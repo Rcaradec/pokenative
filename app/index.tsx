@@ -1,26 +1,22 @@
-import { Link } from "expo-router";
-import { StyleSheet, Text } from "react-native";
+import { StatusBar, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ThemedText from "../components/ThemedText";
+import { useThemeColors } from "@/hooks/useThemeColors";
 
 export default function Index() {
+  const colors = useThemeColors();
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Test.</Text>
-      <Link href='/about'>A propos</Link>
-      <Link
-        href={{
-          pathname: "/pokemon/[id]",
-          params: { id: 3 },
-        }}
-      >
-        Pokemon 3
-      </Link>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.tint }]}>
+      <StatusBar barStyle='light-content' backgroundColor={colors.tint} />
+      <ThemedText variant='headline' color='grayWhite'>
+        Pokédex
+      </ThemedText>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#ff0000",
+    flex: 1,
   },
 });
